@@ -1,8 +1,8 @@
-<p-card styleClass="w-full p-4">
+<p-card styleClass="w-full p-4 shadow-none border border-gray-100">
     <ng-template #header>
       <div class="flex items-center gap-4">
         <lucide-angular [img]="circleDotIcon" [size]="16"></lucide-angular>
-        <span class="font-semibold text-xl text-900 leading-6">{{ task()?.title }}</span>
+        <span class="font-semibold text-2xl text-black leading-6">{{ task()?.title }}</span>
       </div>
     </ng-template>
     <ng-template #content>
