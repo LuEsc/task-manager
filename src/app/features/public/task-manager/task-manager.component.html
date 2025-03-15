@@ -1,0 +1,17 @@
+
+<section class="w-full max-w-8/10 mx-auto mt-12">
+    <div class="flex items-center justify-between">
+        <h1 class="text-2xl font-semibold mb-6">Task manager</h1>
+        <button (click)="createTask()" class="bg-blue-500 hover:bg-blue-700 text-white font-semibold py-1 px-4 rounded-md cursor-pointer">
+            Create task
+        </button>
+    </div>
+    
+    <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-y-6 gap-x-4">
+      @for (task of tasks; track task.id) {
+        <div class="w-full">
+          <app-task-item [task]="task"></app-task-item>
+        </div>
+      }
+    </div>
+  </section>
