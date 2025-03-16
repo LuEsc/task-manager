@@ -4,7 +4,7 @@
         <app-inline-text-editor
           formControlName="title"
           [required]="true"
-          placeholder="¿Qué necesitas hacer?"
+          placeholder="Click here and type the title"
           class="font-semibold text-lg text-black leading-6 w-full"
           (validationChange)="titleValidityChanged($event)">
         </app-inline-text-editor>
@@ -13,7 +13,7 @@
       <div class="mb-4">
         <app-inline-text-editor
           formControlName="description"
-          placeholder="Añade una descripción detallada..."
+          placeholder="Click here and type the description."
           class="text-sm text-gray-600 w-full min-h-[40px]">
         </app-inline-text-editor>
       </div>

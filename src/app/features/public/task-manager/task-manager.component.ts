@@ -17,7 +17,7 @@ import { TaskEditorComponent } from "./task-editor/task-editor.component";
   styleUrl: './task-manager.component.scss'
 })
 export class TaskManagerComponent {
-  readonly bookCheck = BookCheck;
+  readonly bookCheckIcon = BookCheck;
   creatingTask = signal<boolean>(false);
   tasks = signal<TaskItem[]>([]);
   completedTasks = signal<TaskItem[]>([]);

@@ -1,4 +1,4 @@
-<section class="w-full max-w-6/10 mx-auto mt-12">
+<section class=" max-w-6/10 xs:max-w-3/10 mx-auto mt-12">
 
   <div class="flex items-center justify-between mb-8">
     <h1 class="text-lg font-normal text-gray-800 m-0">Task manager</h1> 
@@ -51,7 +51,7 @@
       @if(!tasks().length && !creatingTask()) {
         <div class="col-span-full flex flex-col items-center justify-center w-full h-94 border border-dashed border-gray-300 rounded-xl bg-gray-50 p-6 text-center">
           <span class="rounded-full bg-gray-100 p-4">
-            <lucide-angular name="book-check" [size]="40" class="text-gray-400"/>
+            <lucide-angular [img]="bookCheckIcon" [size]="40" class="text-gray-400"/>
           </span>
           <p class="text-gray-500 text-lg font-medium">No tasks yet</p>
           <p class="text-gray-400 text-sm">Your tasks will appear here. Start by creating your first task to get organized.</p>
