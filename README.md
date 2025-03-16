@@ -1,59 +1,72 @@
-# TaskManager
+# Ordon - Aplicación Angular
 
-This project was generated using [Angular CLI](https://github.com/angular/angular-cli) version 19.2.3.
+## Descripción
 
-## Development server
+Task Manager es una aplicación web desarrollada en Angular 19, diseñada para gestionar tareas de manera eficiente. Incorpora un diseño moderno y minimalista gracias a Tailwind CSS y PrimeNG, además de usar Lucide Icons para una mejor experiencia visual. Las tareas se almacenan en LocalStorage, permitiendo persistencia de datos.
 
-To start a local development server, run:
+## Características Principales
 
-```bash
-ng serve
-```
+- Creación, edición y eliminación de tareas.
+- Estado de tareas: pendientes y completadas.
+- Persistencia de datos en LocalStorage.
+- UI moderna con Tailwind CSS y PrimeNG.
+- Iconografía intuitiva con Lucide Icons.
 
-Once the server is running, open your browser and navigate to `http://localhost:4200/`. The application will automatically reload whenever you modify any of the source files.
+## Tecnologías Utilizadas
 
-## Code scaffolding
+- **Angular 19**: Framework frontend para construir aplicaciones web escalables.
+- **Tailwind CSS**: Framework de estilos utilitario para diseño moderno y rápido.
+- **PrimeNG**: Biblioteca de componentes para mejorar la UI.
+- **Lucide Icons**: Conjunto de iconos minimalistas y personalizables.
+- **LocalStorage**: Almacenamiento en el navegador para persistencia de datos sin backend.
 
-Angular CLI includes powerful code scaffolding tools. To generate a new component, run:
+## Estructura del Proyecto
 
-```bash
-ng generate component component-name
-```
+La aplicación sigue una estructura modular y bien organizada para facilitar la mantenibilidad y escalabilidad del código:
 
-For a complete list of available schematics (such as `components`, `directives`, or `pipes`), run:
+- **core/**: Contiene servicios y configuraciones globales esenciales para la aplicación.
+- **shared/**: Incluye módulos, directivas y componentes reutilizables en diferentes partes de la aplicación.
+- **features/public/**: Almacena los módulos y componentes específicos de la funcionalidad pública, como la gestión de tareas.
+- **components/**: Contiene los componentes individuales utilizados dentro de `features/public/`.
 
-```bash
-ng generate --help
-```
+Esta estructura modular mejora la separación de responsabilidades, facilitando la comprensión del código y permitiendo una escalabilidad más sencilla a medida que el proyecto crece.
 
-## Building
+## Instalación y Ejecución Local
 
-To build the project run:
+Para ejecutar la aplicación en tu entorno local, sigue estos pasos:
 
-```bash
-ng build
-```
+### Prerrequisitos
 
-This will compile your project and store the build artifacts in the `dist/` directory. By default, the production build optimizes your application for performance and speed.
+Asegúrate de tener instalados los siguientes requisitos:
 
-## Running unit tests
+- Node.js (versión 18 o superior)
+- Angular CLI (instalable con `npm install -g @angular/cli`)
 
-To execute unit tests with the [Karma](https://karma-runner.github.io) test runner, use the following command:
+### Pasos de Instalación
 
-```bash
-ng test
-```
+1. Clonar el repositorio:
 
-## Running end-to-end tests
+   ```bash
+   git clone https://github.com/tu-usuario/task-manager.git
+   cd task-manager
 
-For end-to-end (e2e) testing, run:
+2. Instalar dependencias:
+    ```bash
+    npm install
 
-```bash
-ng e2e
-```
+3. Ejecutar la aplicación:
+    ```bash
+    ng serve
 
-Angular CLI does not come with an end-to-end testing framework by default. You can choose one that suits your needs.
+## Decisiones de Diseño y Arquitectura
 
-## Additional Resources
+- **Uso de Tailwind CSS**: Para optimizar la velocidad de desarrollo y mejorar la personalización de estilos.
+- **PrimeNG**: Facilita la incorporación de componentes UI preconstruidos y altamente personalizables.
+- **LocalStorage**: Se utiliza para persistencia, evitando dependencias en backend y mejorando el rendimiento en aplicaciones personales o pequeñas.
+- **Estructura modular**: Mejora la separación de responsabilidades y facilita la escalabilidad del proyecto.
 
-For more information on using the Angular CLI, including detailed command references, visit the [Angular CLI Overview and Command Reference](https://angular.dev/tools/cli) page.
+## Enlaces y Contacto
+
+- **GitHub**: [Repositorio del proyecto](https://github.com/LuEsc/task-manager)
+- **LinkedIn**: [Mi LinkedIn](https://www.linkedin.com/in/llunaes/)
+- **Medium**: [Un poco más de lo que hago con Angular](https://medium.com/@llunaes)
