@@ -1,0 +1,31 @@
+.compact-toast {
+    .p-toast-message {
+      padding: 0.75rem 1rem;
+      margin: 0.5rem 0;
+      border-radius: 4px;
+      box-shadow: 0 1px 3px rgba(0, 0, 0, 0.12), 0 1px 2px rgba(0, 0, 0, 0.24);
+      border: 1px solid rgba(0, 0, 0, 0.12);
+    } 
+    
+    .p-toast-message-content {
+      padding: 0;
+    }
+    
+    .p-toast-message-icon {
+      font-size: 1rem;
+    }
+    
+    .p-toast-summary {
+      font-size: 0.875rem;
+      font-weight: 500;
+    }
+    
+    .p-toast-detail {
+      font-size: 0.8125rem;
+    }
+  }
+  
+  .p-toast {
+    opacity: 0.95;
+    max-width: 20rem;
+  }

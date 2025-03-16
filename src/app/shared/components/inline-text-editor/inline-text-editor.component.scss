@@ -9,6 +9,11 @@
     overflow-wrap: break-word;
     max-height: 300px;
     overflow-y: auto;
+
+    &[placeholder]:empty::before {
+      content: attr(placeholder);
+      color: #6c757d;
+    }
   }
   [contenteditable="true"] br {
     display: none;

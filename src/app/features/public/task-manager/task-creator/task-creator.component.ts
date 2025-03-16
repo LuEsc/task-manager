@@ -41,7 +41,7 @@ export class TaskCreatorComponent {
          title: formValues.title || '',
          description: formValues.description || '',
        };
-       
+       console.log(newTask);
        this.taskCreated.emit(newTask);
        
        this.taskForm.reset();

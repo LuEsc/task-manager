@@ -1,9 +1,77 @@
-<p-drawer styleClass="!w-full md:!w-80 lg:!w-[30rem]" [(visible)]="open" position="right">
+<p-drawer #drawerRef styleClass="!w-full md:!w-90 lg:!w-[40rem]" [(visible)]="open" position="right">
     <ng-template #headless>
         <section class="p-4">
             <div class="flex items-center justify-between">
-                <p-select [options]="statusOptions" optionLabel="label" placeholder="Select a City" class="w-full md:w-46 md:h-10" />
+                <p-button severity="contrast" [text]="true" styleClass="h-6 px-0 text-sm" pTooltip="Hide editor." (click)="closeCallback($event)">
+                    <lucide-angular [img]="iconClose" [size]="16" />
+                </p-button>
             </div>
+            <form [formGroup]="taskEditorForm" class="mt-4 p-4 justify-center">
+                <div class="flex items-center mb-6">
+                    <app-inline-text-editor formControlName="title" [required]="true" placeholder="Click here and type the title" class="font-semibold text-lg text-black leading-6 w-full" />
+                </div>
+                <div class="grid grid-cols-2 gap-4">
+                    <div class="text-sm font-medium text-gray-500 flex items-center">Status</div>
+                    <div class="text-sm">
+                        <p-inplace>
+                            <ng-template pTemplate="display">
+                                <span class="cursor-pointer hover:bg-gray-100 p-1 rounded">
+                                    {{ getStatusLabel(taskEditorForm.controls.status.value) }}
+                                </span>
+                            </ng-template>
+                            <ng-template pTemplate="content">
+                                <p-select formControlName="status" [options]="statusOptions" optionLabel="label" optionValue="value" class="w-full" (ngModelChange)="onStatusChange($event)"></p-select>
+                            </ng-template>
+                        </p-inplace>
+                    </div>
+
+                    <div class="text-sm font-medium text-gray-500 flex items-center">Pinned</div>
+                    <div class="text-sm">
+                        <p-button 
+                            severity="contrast" 
+                            [text]="true" 
+                            styleClass="p-1"
+                            (click)="togglePin()">
+                            <lucide-angular 
+                                [img]="taskEditorForm.controls.pinned.value ? iconPinFilled : iconPin" 
+                                [size]="18" 
+                                [class]="taskEditorForm.controls.pinned.value ? 'text-amber-500' : 'text-gray-400'" />
+                        </p-button>
+                    </div>
+
+                    <div class="text-sm font-medium text-gray-500 flex items-center">Created At</div>
+                    <div class="text-sm">
+                        <p-inplace>
+                            <ng-template pTemplate="display">
+                                <span class="cursor-pointer hover:bg-gray-100 p-1 rounded">
+                                    {{ taskEditorForm.controls.createdAt.value | date }}
+                                </span>
+                            </ng-template>
+                            <ng-template pTemplate="content">
+                                <p-datepicker formControlName="createdAt" />
+                            </ng-template>
+                        </p-inplace>
+                    </div>
+                    
+                    <div class="text-sm font-medium text-gray-500 flex items-center">Assigned To</div>
+                    <div class="text-sm">
+                        <p-inplace>
+                            <ng-template pTemplate="display">
+                                <span class="cursor-pointer hover:bg-gray-100 p-1 rounded">
+                                    {{ getAssignedUserName(taskEditorForm.controls.assignedTo.value) || 'Click to edit' }}
+                                </span>
+                            </ng-template>
+                            <ng-template pTemplate="content">
+                                <p-select formControlName="assignedTo" [options]="userOptions" optionLabel="name" optionValue="id" class="w-full"></p-select>
+                            </ng-template>
+                        </p-inplace>
+                    </div>
+                </div>
+                <div class="w-full">
+                    <div class="text-sm font-medium text-gray-500 flex items-center py-4">Description</div>
+                    <app-inline-text-editor formControlName="description"  placeholder="Click here and type the description" class="w-full" />
+                </div>
+            </form>
         </section>
     </ng-template>
 </p-drawer>

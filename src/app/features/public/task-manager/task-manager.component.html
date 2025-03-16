@@ -44,7 +44,7 @@
             (onDeleteTask)="onTaskDelete($event)" 
             (onPinnedTask)="onTaskPinned($event)" 
             (onCompletedTask)="onTaskComplete($event)" 
-            (onEditTask)="toggleEditor($event)" />
+            (onEditTask)="canEdit($event)" />
         </div>
       }
       
@@ -63,8 +63,11 @@
     </div>
   </div>
 
-  <app-task-editor 
-    [open]="editorOpen" 
-    [taskId]="selectedTaskId" />
+  @if (editorOpen) {
+    <app-task-editor 
+      [open]="editorOpen" 
+      [taskId]="selectedTaskId"
+      (close)="togglePanelEditor()" />
+  }
 
 </section>

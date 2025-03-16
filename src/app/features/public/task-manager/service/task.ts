@@ -29,11 +29,18 @@ export class Task {
      * @returns {TaskItem[]} An array of tasks sorted by creation date in descending order.
      */
     allTasks(): TaskItem[] {
-        return [...this.tasksSignal()].sort((a, b) => 
-            (b?.createdAt?.getTime() ?? 0) - (a?.createdAt?.getTime() ?? 0)
-        );
+        if (!this.tasksSignal().length) return [];
+        return [...this.tasksSignal()]
     }
-    
+
+    /**
+     * Retrieves a task by its ID.
+     * @param {string} id - The ID of the task to retrieve.
+     * @returns {TaskItem | undefined} The task with the specified ID, or undefined if not found.
+     */
+    public getTaskById(id: string): TaskItem | undefined {
+        return this.tasksSignal().find((task) => task.id === id);
+    }
 
     /**
      * Loads tasks from localStorage.
@@ -44,8 +51,15 @@ export class Task {
     }
 
     /**
+     * Saves the current list of tasks to localStorage.
+     */
+    private saveTasks(): void {
+        saveToLocalStorage('tasks', this.tasksSignal());
+    }
+
+    /**
      * Creates a new task and adds it to the task list.
-     * @param {string} title - The title of the new task.
+     * @param {TaskItem} task - The task to be added.
      */
     public addTask(task: TaskItem): void {
         const newTask: TaskItem = {
@@ -59,6 +73,7 @@ export class Task {
         };
         
         this.tasksSignal.update((tasks) => [...tasks, newTask]);
+        this.saveTasks(); // Persist the updated task list
     }
 
     /**
@@ -67,6 +82,7 @@ export class Task {
      */
     public deleteTask(id: string): void {
         this.tasksSignal.update((tasks) => tasks.filter((task) => task.id !== id));
+        this.saveTasks(); // Persist the updated task list
     }
 
     /**
@@ -74,12 +90,14 @@ export class Task {
      * @param {string} id - The ID of the task to be updated.
      * @param {string} newTitle - The new title for the task.
      */
-    public editTask(id: string, newTitle: string): void {
+    public editTask(id: string, data: TaskItem): void {
+        const updatedTask = {...data, id};
         this.tasksSignal.update((tasks) =>
             tasks.map((task) =>
-                task.id === id ? { ...task, title: newTitle } : task
+                task.id === id ? { ...updatedTask } : task
             )
         );
+        this.saveTasks(); // Persist the updated task list
     }
 
     /**
@@ -92,6 +110,7 @@ export class Task {
                 task.id === id ? { ...task, status: "completed" } : task
             )
         );
+        this.saveTasks(); // Persist the updated task list
     }
 
     /**
@@ -104,5 +123,6 @@ export class Task {
                 task.id === id ? { ...task, pinned: !task.pinned } : task
             )
         );
+        this.saveTasks(); // Persist the updated task list
     }
 }

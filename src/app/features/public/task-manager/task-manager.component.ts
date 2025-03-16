@@ -59,9 +59,13 @@ export class TaskManagerComponent {
     this.taskService.toggleTaskCompletion(id);
   }
 
-  toggleEditor(id: string) {
-    this.editorOpen = !this.editorOpen;
+  canEdit(id: string) {
     this.selectedTaskId = id;
+    this.togglePanelEditor();
+  }
+
+  togglePanelEditor() {
+    this.editorOpen = !this.editorOpen;
   }
 
 }

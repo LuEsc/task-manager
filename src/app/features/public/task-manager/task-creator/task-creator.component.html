@@ -17,8 +17,7 @@
           class="text-sm text-gray-600 w-full min-h-[40px]">
         </app-inline-text-editor>
       </div>
-      
-      <!-- Botones de acción -->
+
       <div class="flex justify-end gap-2 mt-4">
         <button
           type="button"
@@ -26,7 +25,7 @@
           (click)="onCancel()">
           <span class="flex items-center gap-1">
             <lucide-angular [img]="xIcon" [size]="14"></lucide-angular>
-            Cancelar
+            Cancel
           </span>
         </button>
         
@@ -36,7 +35,7 @@
           [disabled]="taskForm.invalid">
           <span class="flex items-center gap-1">
             <lucide-angular [img]="checkIcon" [size]="14"></lucide-angular>
-            Crear tarea
+            Create task
           </span>
         </button>
       </div>

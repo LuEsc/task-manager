@@ -47,6 +47,7 @@ export class TaskItemComponent {
   }
 
   onEdit(taskId: string | undefined) {
+    console.log(this.task());
     this.onEditTask.emit(taskId ?? '');
   }
 }
