@@ -1,6 +1,11 @@
 export type TaskItem = {
-    id: number;
+    id?: string;
     title: string;
     description: string;
-    isCompleted: boolean;
+    createdAt?: Date;
+    assignedTo?: string;
+    status?: TaskStatus;
+    pinned?: boolean;
 };
+
+export type TaskStatus = 'pending' | 'completed';

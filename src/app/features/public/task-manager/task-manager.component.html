@@ -1,17 +1,70 @@
-
 <section class="w-full max-w-6/10 mx-auto mt-12">
-    <div class="flex items-center justify-between mb-4">
-        <h1 class="text-lg font-normal">Task manager</h1>
-        <button (click)="createTask()" class="bg-black text-md hover:bg-blue-700 text-white font-normal py-1 px-4 rounded-md cursor-pointer">
-            Create task
-        </button>
+
+  <div class="flex items-center justify-between mb-8">
+    <h1 class="text-lg font-normal text-gray-800 m-0">Task manager</h1> 
+    @if (tasks().length) {
+      <button (click)="showTaskCreator()" class="bg-black text-md hover:bg-blue-700 text-white font-normal py-2 px-6 rounded-md cursor-pointer transition-colors duration-200">
+        Create task
+      </button>
+    }
+  </div>
+
+  @if (pinnedTasks().length) {
+    <div class="mb-6">
+      <h2 class="text-sm font-semibold text-gray-600 mb-3">Pinned Tasks</h2>
+      <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-y-6 gap-x-4">
+        @for (task of pinnedTasks(); track task.id) {
+          <div class="w-full">
+            <app-task-item 
+              [task]="task" 
+              (onDeleteTask)="onTaskDelete($event)" 
+              (onPinnedTask)="onTaskPinned($event)" 
+              (onCompletedTask)="onTaskComplete($event)" />
+          </div>
+        }
+      </div>
+      <p-divider styleClass="w-full my-6" />
     </div>
-    
+  }
+  
+  <div>
+    @if (pinnedTasks().length) {
+      <h2 class="text-sm font-semibold text-gray-600 mb-3">All Tasks</h2>
+    }
     <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-y-6 gap-x-4">
-      @for (task of tasks; track task.id) {
+      @if (creatingTask()) {
+        <app-task-creator 
+          (taskCreated)="onTaskCreate($event)" 
+          (cancel)="onCancelCreation()" />
+      }
+      @for (task of tasks(); track task.id) {
         <div class="w-full">
-          <app-task-item [task]="task"></app-task-item>
+          <app-task-item 
+            [task]="task" 
+            (onDeleteTask)="onTaskDelete($event)" 
+            (onPinnedTask)="onTaskPinned($event)" 
+            (onCompletedTask)="onTaskComplete($event)" 
+            (onEditTask)="toggleEditor($event)" />
+        </div>
+      }
+      
+      @if(!tasks().length && !creatingTask()) {
+        <div class="col-span-full flex flex-col items-center justify-center w-full h-94 border border-dashed border-gray-300 rounded-xl bg-gray-50 p-6 text-center">
+          <span class="rounded-full bg-gray-100 p-4">
+            <lucide-angular name="book-check" [size]="40" class="text-gray-400"/>
+          </span>
+          <p class="text-gray-500 text-lg font-medium">No tasks yet</p>
+          <p class="text-gray-400 text-sm">Your tasks will appear here. Start by creating your first task to get organized.</p>
+          <button (click)="showTaskCreator()" class="bg-black text-md mt-4 hover:bg-blue-700 text-white font-normal py-2 px-6 rounded-md cursor-pointer transition-colors duration-200">
+            Create task
+          </button>
         </div>
       }
     </div>
-  </section>
+  </div>
+
+  <app-task-editor 
+    [open]="editorOpen" 
+    [taskId]="selectedTaskId" />
+
+</section>

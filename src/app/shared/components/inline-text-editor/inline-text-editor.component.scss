@@ -1,0 +1,15 @@
+:host {
+    display: block;
+    width: 100%;
+    overflow: hidden;
+  }
+  
+  div[contenteditable] {
+    word-wrap: break-word;
+    overflow-wrap: break-word;
+    max-height: 300px;
+    overflow-y: auto;
+  }
+  [contenteditable="true"] br {
+    display: none;
+  }

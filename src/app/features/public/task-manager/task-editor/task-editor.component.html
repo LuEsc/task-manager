@@ -1,0 +1,9 @@
+<p-drawer styleClass="!w-full md:!w-80 lg:!w-[30rem]" [(visible)]="open" position="right">
+    <ng-template #headless>
+        <section class="p-4">
+            <div class="flex items-center justify-between">
+                <p-select [options]="statusOptions" optionLabel="label" placeholder="Select a City" class="w-full md:w-46 md:h-10" />
+            </div>
+        </section>
+    </ng-template>
+</p-drawer>

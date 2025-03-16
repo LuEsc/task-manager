@@ -1,0 +1,20 @@
+<div 
+      #editor
+      class="min-h-[12px] w-full focus:outline-none cursor-text relative text-gray-800 overflow-hidden text-ellipsis break-words whitespace-pre-wrap max-w-full"
+      [class.text-gray-400]="contentSignal() === ''"
+      [class.border-red-500]="isInvalid()"
+      [attr.contenteditable]="editable()"
+      (blur)="onBlur()"
+      (input)="onInput($event)"
+      (focus)="onFocus()"
+      (keydown.enter)="onEnterKey($event)">
+      @if (contentSignal() === '' && !focused()) {
+        <span class="opacity-60">{{ placeholder }}</span>
+      }
+</div>
+
+@if (isInvalid() && touched()) {
+    <div class="text-red-500 text-xs mt-1">
+    Este campo es requerido
+    </div>
+}
